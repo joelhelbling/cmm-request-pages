@@ -21,7 +21,7 @@ window.RequestPagesQuestion = class RequestPagesQuestion
     @dna.help_text
 
   isRequired: ->
-    @dna.flag == 'REQUIRED'
+    if @dna.flag == 'REQUIRED' then 'required' else ''
 
   # unique to FREE_TEXT
   placeholder: ->

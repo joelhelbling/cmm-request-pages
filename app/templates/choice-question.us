@@ -1,4 +1,4 @@
-<div class="question choice">
+<div class="question choice <%= question.isRequired() %>">
   <label for="<%= question.questionId() %>">
     <%= question.questionText() %>
   </label>

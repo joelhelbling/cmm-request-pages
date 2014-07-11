@@ -27,11 +27,11 @@ describe 'RequestPagesQuestion', ->
   describe '#isRequired', ->
     describe 'when not required', ->
       Given -> @json.flag = 'IMPORTANT'
-      Then  -> expect( @subject.isRequired() ).toBeFalsy()
+      Then  -> expect( @subject.isRequired() ).toEqual ''
 
     describe 'when required', ->
       Given -> @json.flag = 'REQUIRED'
-      Then  -> expect( @subject.isRequired() ).toBeTruthy()
+      Then  -> expect( @subject.isRequired() ).toEqual 'required'
 
   describe 'unknown question type', ->
     Given -> @json.question_type = 'UNKNOWN'

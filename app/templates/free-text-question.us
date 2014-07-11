@@ -1,4 +1,4 @@
-<div class="question free-text">
+<div class="question free-text <%= question.isRequired() %>">
   <label for="<%= question.questionId() %>">
     <%= question.questionText() %>
   </label>
@@ -7,5 +7,7 @@
          id="<%= question.questionId() %>"
          name="<%= question.questionId() %>"
          value="<%= question.value %>"
-         placeholder="<%= question.helpText() %>" />
+         placeholder="<%= question.helpText() %>"
+         <%= question.isRequired() %>
+  />
 </div>
