@@ -7,7 +7,7 @@ describe 'RequestPagesQuestion', ->
       help_text:                 'Helpful explanation'
       flag:                      'IMPORTANT'
   Given -> @currentValue = null
-  When -> @subject = new RequestPagesQuestion(@json, @currentValue)
+  When -> @subject = new RequestPages.Question(@json, @currentValue)
 
   describe 'basic construction', ->
     Then  -> expect( @subject.questionText()          ).toEqual 'Question Text'

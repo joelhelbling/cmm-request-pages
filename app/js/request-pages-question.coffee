@@ -1,6 +1,7 @@
-window.RequestPagesQuestion = class RequestPagesQuestion
-  templateDir: 'app/templates'
+# this will be moved elsewhere...
+window.RequestPages = {}
 
+window.RequestPages.Question = class Question
   constructor: (questionJson, currentValue='') ->
     @dna = questionJson
     @value = currentValue
@@ -36,6 +37,8 @@ window.RequestPagesQuestion = class RequestPagesQuestion
 
   isSelected: (choice) ->
     if choice.choice_id == @value then 'selected' else ''
+
+  # end unique to things
 
   templates:
     FREE_TEXT : 'free-text-question'
