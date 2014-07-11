@@ -1,0 +1,16 @@
+<div class="question choice">
+  <label for="<%= question.questionId() %>">
+    <%= question.questionText() %>
+  </label>
+
+  <select id="<%= question.questionId() %>"
+          name="<%= question.questionId() %>"
+          <%= question.selectMultiple() %> >
+    <% question.choices.forEach( function(choice){ %>
+      <option value="<%= choice.choice_id %>" <%= question.isSelected(choice) %> >
+        <%= choice.choice_text %>
+      </option>
+    <% }); %>
+  </select>
+
+</div>

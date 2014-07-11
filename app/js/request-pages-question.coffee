@@ -27,11 +27,19 @@ window.RequestPagesQuestion = class RequestPagesQuestion
   placeholder: ->
     @dna.placeholder
 
-  isRequired: ->
-    @dna.flag == 'REQUIRED'
+  # unique to CHOICE
+  selectMultiple: ->
+    if @dna.select_multiple then 'multiple' else ''
+
+  choices: ->
+    @dna.choices
+
+  isSelected: (choice) ->
+    if choice.choice_id == @value then 'selected' else ''
 
   templates:
-    FREE_TEXT: 'free-text-question'
+    FREE_TEXT : 'free-text-question'
+    CHOICE    : 'choice-question'
 
   template: ->
     @templates[@questionType()] || 'unknown-question'
