@@ -1,0 +1,3 @@
+<div class="question">
+  Something went wrong (I don't know how to display a question of type "<%= question.questionType() %>").
+</div>

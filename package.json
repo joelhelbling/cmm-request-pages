@@ -1,0 +1,14 @@
+{
+  "name": "cmm-request-pages",
+  "description": "A javascript app for rendering CoverMyMeds API Prior Authorization request pages.",
+  "version": "0.0.1",
+  "private": true,
+  "author": "John Doe",
+  "devDependencies": {
+    "lineman": "~0.33.4"
+  },
+  "scripts": {
+    "start": "lineman run",
+    "test": "lineman spec-ci"
+  }
+}
