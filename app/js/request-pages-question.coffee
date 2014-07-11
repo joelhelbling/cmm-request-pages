@@ -1,8 +1,9 @@
 window.RequestPagesQuestion = class RequestPagesQuestion
   templateDir: 'app/templates'
 
-  constructor: (questionJson) ->
+  constructor: (questionJson, currentValue='') ->
     @dna = questionJson
+    @value = currentValue
 
   questionType: ->
     @dna.question_type
@@ -19,6 +20,10 @@ window.RequestPagesQuestion = class RequestPagesQuestion
   helpText: ->
     @dna.help_text
 
+  isRequired: ->
+    @dna.flag == 'REQUIRED'
+
+  # unique to FREE_TEXT
   placeholder: ->
     @dna.placeholder
 

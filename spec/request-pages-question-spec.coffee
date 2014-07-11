@@ -6,13 +6,23 @@ describe 'RequestPagesQuestion', ->
       default_next_question_id:  'next_question'
       help_text:                 'Helpful explanation'
       flag:                      'IMPORTANT'
-  When -> @subject = new RequestPagesQuestion(@json)
+  Given -> @currentValue = null
+  When -> @subject = new RequestPagesQuestion(@json, @currentValue)
 
   describe 'basic construction', ->
     Then  -> expect( @subject.questionText()          ).toEqual 'Question Text'
     Then  -> expect( @subject.questionId()            ).toEqual 'question'
     Then  -> expect( @subject.defaultNextQuestionId() ).toEqual 'next_question'
     Then  -> expect( @subject.helpText()              ).toEqual 'Helpful explanation'
+
+  describe 'value attribute', ->
+    describe 'when no currentValue is provided', ->
+      Given -> @currentValue = null
+      Then  -> expect( @subject.value ).toEqual ''
+
+    describe 'when currentValue is provided', ->
+      Given -> @currentValue = 'pre-populated answer'
+      Then -> expect( @subject.value ).toEqual 'pre-populated answer'
 
   describe '#isRequired', ->
     describe 'when not required', ->

@@ -1,7 +1,11 @@
-<div class="question">
+<div class="question free-text">
   <label for="<%= question.questionId() %>">
     <%= question.questionText() %>
   </label>
 
-  <input type="text" id="<%= question.questionId() %>" name="<%= question.questionId() %>" value="" placeholder="<%= question.helpText() %>" />
+  <input type="text"
+         id="<%= question.questionId() %>"
+         name="<%= question.questionId() %>"
+         value="<%= question.value %>"
+         placeholder="<%= question.helpText() %>" />
 </div>
