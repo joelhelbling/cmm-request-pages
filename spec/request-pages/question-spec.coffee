@@ -1,4 +1,4 @@
-describe 'RequestPagesQuestion', ->
+describe 'RequestPages.Question', ->
   Given ->
     @json =
       question_text:             'Question Text'
@@ -7,7 +7,7 @@ describe 'RequestPagesQuestion', ->
       help_text:                 'Helpful explanation'
       flag:                      'IMPORTANT'
   Given -> @currentValue = null
-  When -> @subject = new RequestPages.Question(@json, @currentValue)
+  When -> @subject = RequestPages.Question.create(@json, @currentValue)
 
   describe 'basic construction', ->
     Then  -> expect( @subject.questionText()          ).toEqual 'Question Text'
@@ -35,50 +35,5 @@ describe 'RequestPagesQuestion', ->
 
   describe 'unknown question type', ->
     Given -> @json.question_type = 'UNKNOWN'
-    Then  -> expect( @subject.template() ).toEqual 'unknown-question'
+    Then  -> expect( @subject.template ).toEqual 'unknown-question'
 
-  describe 'FREE_TEXT', ->
-    Given -> @json.question_type = 'FREE_TEXT'
-    Given -> @json.placeholder = 'E.g. answer like so...'
-    Then  -> expect( @subject.template() ).toEqual 'free-text-question'
-    Then  -> expect( @subject.placeholder() ).toEqual 'E.g. answer like so...'
-
-  describe 'CHOICE', ->
-    Given -> @json.question_type = 'CHOICE'
-    And   ->
-      @json.choices = [
-          choice_id: 'question_choice_a'
-          choice_text: 'Plan A'
-          next_question_id: 'question_if_a'
-        ,
-          choice_id: 'question_choice_b'
-          choice_text: 'Plan B'
-          next_question_id: 'question_if_b'
-      ]
-    And   -> @json.select_multiple = false
-
-    Then  -> expect( @subject.template() ).toEqual 'choice-question'
-
-    describe '#selectMultiple', ->
-      describe 'when select_multiple is false', ->
-        Given -> @json.select_multiple = false
-        Then  -> expect( @subject.selectMultiple() ).toEqual ''
-
-      describe 'when select_multiple is true', ->
-        Given -> @json.select_multiple = true
-        Then -> expect( @subject.selectMultiple() ).toEqual 'multiple'
-
-    describe '#choices', ->
-      Then  -> expect( @subject.choices().length ).toEqual 2
-      Then  -> expect( @subject.choices()[0].choice_id ).toEqual 'question_choice_a'
-
-    describe '#isSelected', ->
-      Given -> @choice = @json.choices[0]
-
-      describe 'when not selected', ->
-        Given -> @currentValue = 'some_other_id'
-        Then  -> expect( @subject.isSelected @choice ).toEqual ''
-
-      describe 'when selected', ->
-        Given -> @currentValue = @choice.choice_id
-        Then  -> expect( @subject.isSelected @choice ).toEqual 'selected'

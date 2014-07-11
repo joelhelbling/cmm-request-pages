@@ -2,9 +2,18 @@
 window.RequestPages = {}
 
 window.RequestPages.Question = class Question
+  @create: (questionJson, currentValue='') ->
+    Type = switch questionJson['question_type']
+      when 'FREE_TEXT' then RequestPages.Question.FreeText
+      when 'CHOICE'    then RequestPages.Question.Choice
+      else                  RequestPages.Question
+    new Type(questionJson, currentValue)
+
   constructor: (questionJson, currentValue='') ->
     @dna = questionJson
     @value = currentValue
+
+  template: 'unknown-question' # subclass will override
 
   questionType: ->
     @dna.question_type
@@ -24,29 +33,6 @@ window.RequestPages.Question = class Question
   isRequired: ->
     if @dna.flag == 'REQUIRED' then 'required' else ''
 
-  # unique to FREE_TEXT
-  placeholder: ->
-    @dna.placeholder
-
-  # unique to CHOICE
-  selectMultiple: ->
-    if @dna.select_multiple then 'multiple' else ''
-
-  choices: ->
-    @dna.choices
-
-  isSelected: (choice) ->
-    if choice.choice_id == @value then 'selected' else ''
-
-  # end unique to things
-
-  templates:
-    FREE_TEXT : 'free-text-question'
-    CHOICE    : 'choice-question'
-
-  template: ->
-    @templates[@questionType()] || 'unknown-question'
-
   render: ->
-    JST[@template()](question: this)
+    JST[@template](question: this)
 
