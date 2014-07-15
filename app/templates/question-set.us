@@ -1,0 +1,6 @@
+<fieldset class='question-set'>
+  <legend><%= questionSet.title %></legend>
+  <% questionSet.questions.forEach( function(question) { %>
+    <%= question.render() %>
+  <% }); %>
+</fieldset>

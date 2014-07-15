@@ -1,6 +1,3 @@
-# this will be moved elsewhere...
-window.RequestPages = {}
-
 window.RequestPages.Question = class Question
   @create: (questionJson, currentValue='') ->
     Type = switch questionJson['question_type']
