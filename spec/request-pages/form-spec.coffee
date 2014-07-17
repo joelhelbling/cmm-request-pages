@@ -35,8 +35,8 @@ describe 'RequestPages.Form', ->
     Then -> expect( @result.questionText() ).toEqual 'Next Question'
 
   describe '#render', ->
-    When  -> @rendered = @subject.render()
-    Then  -> expect( @rendered ).toContain "form class='request-pages-form'"
-    Then  -> expect( @rendered ).toContain '1st Question Set'
-    Then  -> expect( @rendered ).toContain 'Cancel'
-    Then  -> expect( @rendered ).toContain 'Save Changes'
+    When -> @rendered = @subject.render()
+    Then -> expect( @rendered ).toContain "form class='request-pages-form'"
+    Then -> expect( @rendered ).toContain '1st Question Set'
+    Then -> expect( @rendered ).toContain 'Cancel'
+    Then -> expect( @rendered ).toContain 'Save Changes'
