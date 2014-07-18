@@ -2,7 +2,7 @@ describe 'RequestPages', ->
   Given -> @patientId      = 1
   And   -> @prescriptionId = 1
   And   -> @paRequestId    = 1
-  Given -> @resourceUrl = "/patients/#{@patientId}/prescriptions/#{@prescriptionId}/pa_requests/#{@paRequestId}"
+  Given -> @resourceUrl = "/patients/#{@patientId}/prescriptions/#{@prescriptionId}/pa_requests/#{@paRequestId}/request_pages.json"
   When  -> @subject = new RequestPages(@patientId, @prescriptionId, @paRequestId)
 
   describe '#constructor', ->
@@ -11,10 +11,7 @@ describe 'RequestPages', ->
     Given -> @isGetSuccessCallback = (arg)=> arg == @subject._getSuccessCallback
 
     Then  ->
-      expect($.get).toHaveBeenCalledWith
-        url:      jasmine.argThat(@isResourceUrl)
-        success:  jasmine.argThat(@isGetSuccessCallback)
-        dataType: 'json'
+      expect($.get).toHaveBeenCalledWith(jasmine.argThat(@isResourceUrl), jasmine.argThat(@isGetSuccessCallback))
 
   describe '#_resourceUrl', ->
     Then  -> expect( @subject._resourceUrl() ).toEqual @resourceUrl
@@ -24,6 +21,7 @@ describe 'RequestPages', ->
 
     Given -> affix '.request-pages'
     Given -> @renderedForm = 'form markup is here'
+    Given -> @requestPagesJson = { request_page: { api_json: 'yeah! fake!' } }
 
     Given -> @formSpies = spyOnConstructor(window.RequestPages, 'Form', ['render'])
     Given -> @formSpies.render.andReturn @renderedForm
@@ -36,4 +34,4 @@ describe 'RequestPages', ->
 
   describe '#update', ->
     # submits form contents back to @_resourceUrl
-    #
+    # not yet implemented
