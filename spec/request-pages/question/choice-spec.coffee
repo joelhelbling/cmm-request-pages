@@ -23,7 +23,6 @@ describe 'RequestPages.Question.Choice', ->
 
   When  -> @subject = RequestPages.Question.create(@json, @currentValue)
 
-  Then  -> expect( @subject.constructor.name ).toEqual 'Choice'
   Then  -> expect( @subject.template ).toEqual 'choice-question'
 
   describe '#selectMultiple', ->

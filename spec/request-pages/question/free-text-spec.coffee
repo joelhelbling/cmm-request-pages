@@ -13,7 +13,6 @@ describe 'RequestPages.Question.FreeText', ->
 
   When  -> @subject = RequestPages.Question.create(@json, @currentValue)
 
-  Then  -> expect( @subject.constructor.name ).toEqual 'FreeText'
   Then  -> expect( @subject.template ).toEqual 'free-text-question'
 
   Then  -> expect( @subject.placeholder() ).toEqual 'E.g. answer like so...'
