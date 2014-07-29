@@ -3,9 +3,10 @@
   "description": "A javascript app for rendering CoverMyMeds API Prior Authorization request pages.",
   "version": "0.0.1",
   "private": true,
-  "author": "John Doe",
+  "author": "Joel Helbling",
   "devDependencies": {
-    "lineman": "~0.33.4"
+    "lineman": "~0.33.4",
+    "lineman-lib": "^0.2.0"
   },
   "scripts": {
     "start": "lineman run",

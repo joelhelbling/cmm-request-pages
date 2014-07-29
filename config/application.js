@@ -12,14 +12,40 @@
  *   $ lineman config concat_sourcemap.js #=> to see the JS config for the concat task.
  */
 module.exports = function(lineman) {
+  var _ = lineman.grunt.util._,
+      app = lineman.config.application;
+
+
   //Override application configuration here. Common examples follow in the comments.
   return {
+
+    removeTasks: {
+      common: _(app.removeTasks.common).without("jst")
+    },
+
+    concat: {
+      uncompressedDist: {
+        src: [
+          "<%= files.template.generated %>",
+          "<%= files.coffee.generated %>",
+          "<%= files.js.app %>"
+        ]
+      }
+      
+    },
 
     jst: {
       options: {
         processName: function(filename){
           return filename.replace(/^(?:.*?\/){2}/, '').replace(/\.[^.]*$/, '')
         }
+      }
+    },
+
+    plugins: {
+      lib: {
+        includeVendorInDistribution: false,
+        generateBowerJson: false
       }
     }
 

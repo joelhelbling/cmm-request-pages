@@ -13,7 +13,7 @@ window.RequestPages.Form = function(requestPages) {
     var foundQuestion = {};
     this.questionSets.forEach(_.bind(function(questionSet) {
       questionSet.questions.forEach(_.bind(function(question) {
-        if (question.questionId() == questionId) {
+        if (question.questionId() === questionId) {
           return foundQuestion = question;
         }
       }, this));

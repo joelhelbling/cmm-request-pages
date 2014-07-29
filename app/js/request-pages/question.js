@@ -36,7 +36,7 @@ window.RequestPages.Question.create = function(questionJson, currentValue) {
     currentValue = '';
   }
 
-  var Type = (function() {
+  var questionFactory = (function() {
     switch (questionJson['question_type']) {
       case 'FREE_TEXT':
         return RequestPages.Question.FreeText;
@@ -47,7 +47,7 @@ window.RequestPages.Question.create = function(questionJson, currentValue) {
     }
   })();
 
-  return Type(new RequestPages.Question(questionJson, currentValue));
+  return questionFactory(new RequestPages.Question(questionJson, currentValue));
 
 };
 

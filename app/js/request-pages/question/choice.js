@@ -15,7 +15,7 @@ window.RequestPages.Question.Choice = function(question) {
   }, question);
 
   question.isSelected = _.bind(function(choice) {
-    if (choice.choice_id == this.value) {
+    if (choice.choice_id === this.value) {
       return 'selected';
     } else {
       return '';
