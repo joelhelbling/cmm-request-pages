@@ -6,8 +6,17 @@ window.RequestPages.Form = function(requestPages) {
   this.questionSets = [];
   requestPages['forms']['pa_request']['question_sets'].forEach(
     _.bind(function(questionSet) {
-      this.questionSets.push(new RequestPages.QuestionSet(questionSet, this.currentValues));
+      this.questionSets.push(
+        new RequestPages.QuestionSet(questionSet, this.currentValues)
+      );
+
     }, this));
+
+  this.actions = [];
+  requestPages['actions'].forEach(_.bind(function(action) {
+    this.actions.push( new RequestPages.Form.Action(action) );
+
+  }, this));
 
   this.find_question_by_id = _.bind(function(questionId) {
     var foundQuestion = {};

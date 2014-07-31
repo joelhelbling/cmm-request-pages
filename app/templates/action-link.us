@@ -1,0 +1,1 @@
+<a class='<%= action.slug %> btn' href='<%= action.href %>'><%= action.title %></a>

@@ -1,10 +1,13 @@
-<form class='request-pages-form'>
+<form class='request-pages-form' method="POST">
   <% form.questionSets.forEach( function(questionSet) { %>
     <%= questionSet.render() %>
   <% }); %>
 
   <fieldset class='controls'>
-    <button class='request-pages cancel btn'>Cancel</button>
-    <button class='request-pages submit btn default'>Save Changes</button>
+    <input type='hidden' class='form_action' name='form_action' value='' />
+
+    <% form.actions.forEach( function(action) { %>
+      <%= action.render() %>
+    <% }); %>
   </fieldset>
 </form>

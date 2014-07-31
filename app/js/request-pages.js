@@ -17,11 +17,8 @@ window.RequestPages = function(patientId, prescriptionId, paRequestId) {
   this._getSuccessCallback = _.bind(function(data) {
     this.form = new RequestPages.Form(data['request_page']);
     $(this.selector).html(this.form.render());
-    return this._setupFormHandlers();
 
   }, this);
-
-  this._setupFormHandlers = _.bind(function(){}, this);
 
   $.get(this._resourceUrl(), this._getSuccessCallback);
 

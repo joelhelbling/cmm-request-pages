@@ -25,6 +25,13 @@ describe 'RequestPages.Form', ->
               questions: [ @question_1, @question_2 ]
             ,
           ]
+      actions: [
+          ref: 'pa_request'
+          title: 'Save'
+          href: 'http://web.app/request_pages'
+          method: 'PUT'
+      ]
+
   When -> @subject = new RequestPages.Form(@json)
 
   Then -> expect( @subject.questionSets.length ).toEqual 1
@@ -38,5 +45,4 @@ describe 'RequestPages.Form', ->
     When -> @rendered = @subject.render()
     Then -> expect( @rendered ).toContain "form class='request-pages-form'"
     Then -> expect( @rendered ).toContain '1st Question Set'
-    Then -> expect( @rendered ).toContain 'Cancel'
-    Then -> expect( @rendered ).toContain 'Save Changes'
+    Then -> expect( @rendered ).toContain 'Save'

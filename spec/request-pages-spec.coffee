@@ -18,20 +18,13 @@ describe 'RequestPages', ->
 
   describe '#_getSuccessCallback', ->
     Given -> spyOn($, 'get').andCallFake -> 'prevent ajax call'
-
     Given -> affix '.request-pages'
     Given -> @renderedForm = 'form markup is here'
     Given -> @requestPagesJson = { request_page: { api_json: 'yeah! fake!' } }
-
     Given -> @formSpies = spyOnConstructor(window.RequestPages, 'Form', ['render'])
     Given -> @formSpies.render.andReturn @renderedForm
 
-    When  -> spyOn( @subject, '_setupFormHandlers')
-    And   -> @subject._getSuccessCallback @requestPagesJson
+    When  -> @subject._getSuccessCallback @requestPagesJson
 
     Then  -> expect( $('.request-pages').html() ).toEqual @renderedForm
-    Then  -> expect( @subject._setupFormHandlers ).toHaveBeenCalled()
 
-  describe '#update', ->
-    # submits form contents back to @_resourceUrl
-    # not yet implemented
