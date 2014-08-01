@@ -1,0 +1,9 @@
+<div class="question statement">
+  <label for="<%= question.questionId() %>">
+    <%= question.questionText() %>
+  </label>
+
+  <p>
+    <%= question.content_html() %>
+  </p>
+</div>

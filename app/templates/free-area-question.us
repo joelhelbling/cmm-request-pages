@@ -1,0 +1,15 @@
+<div class="question free-area <%= question.isRequired() %>">
+  <label for="<%= question.questionId() %>">
+    <%= question.questionText() %>
+  </label>
+
+  <textarea
+    id="<%= question.questionId() %>"
+    name="<%= question.questionId() %>"
+    placeholder="<%= question.placeholder() %>"
+    <%= question.isRequired() %> >
+
+    <%= question.value %>
+
+  </textarea>
+</div>

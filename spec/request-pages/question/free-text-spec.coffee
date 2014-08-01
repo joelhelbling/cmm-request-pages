@@ -9,10 +9,10 @@ describe 'RequestPages.Question.FreeText', ->
       flag                     : 'IMPORTANT'
       placeholder              : 'E.g. answer like so...'
 
-  Given -> @currentValue = null
+  Given -> @currentValue = 'answer'
 
   When  -> @subject = RequestPages.Question.create(@json, @currentValue)
 
-  Then  -> expect( @subject.template ).toEqual 'free-text-question'
-
+  Then  -> expect( @subject.template      ).toEqual 'free-text-question'
   Then  -> expect( @subject.placeholder() ).toEqual 'E.g. answer like so...'
+  And   -> expect( @subject.value         ).toEqual 'answer'

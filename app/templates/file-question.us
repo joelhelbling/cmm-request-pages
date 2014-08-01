@@ -1,13 +1,13 @@
-<div class="question free-text <%= question.isRequired() %>">
+<div class="question file <%= question.isRequired() %>">
   <label for="<%= question.questionId() %>">
     <%= question.questionText() %>
   </label>
 
-  <input type="text"
+  <input type="file"
          id="<%= question.questionId() %>"
          name="<%= question.questionId() %>"
          value="<%= question.value %>"
-         placeholder="<%= question.placeholder() %>"
          <%= question.isRequired() %>
   />
 </div>
+

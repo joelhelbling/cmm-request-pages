@@ -42,6 +42,20 @@ window.RequestPages.Question.create = function(questionJson, currentValue) {
         return RequestPages.Question.FreeText;
       case 'CHOICE':
         return RequestPages.Question.Choice;
+      case 'DATE':
+        return RequestPages.Question.Date;
+      case 'NUMERIC':
+        return RequestPages.Question.Numeric;
+      case 'STATEMENT':
+        return RequestPages.Question.Statement;
+      case 'HIDDEN':
+        return RequestPages.Question.Hidden;
+      case 'FILE':
+        return RequestPages.Question.File;
+      case 'CHECKBOX':
+        return RequestPages.Question.Checkbox;
+      case 'FREE_AREA':
+        return RequestPages.Question.FreeArea;
       default:
         return function(question) { return question; };
     }
