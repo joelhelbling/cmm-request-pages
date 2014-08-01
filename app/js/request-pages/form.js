@@ -1,11 +1,18 @@
-window.RequestPages.Form = function(requestPages) {
-  this.currentValues = requestPages['data']['pa_request'];
+window.RequestPages.Form = function(formsJson, currentValues, actions) {
+  this.actionsJson   = actions;
 
   this.template = 'form';
 
+  this.name = _.bind(function() {
+    return Object.keys(formsJson)[0];
+
+  }, this);
+
+  this.formJson      = formsJson[this.name()];
+  this.currentValues = currentValues[this.name()];
+
   this.questionSets = [];
-  requestPages['forms']['pa_request']['question_sets'].forEach(
-    _.bind(function(questionSet) {
+  this.formJson['question_sets'].forEach(_.bind(function(questionSet) {
       this.questionSets.push(
         new RequestPages.QuestionSet(questionSet, this.currentValues)
       );
@@ -13,7 +20,7 @@ window.RequestPages.Form = function(requestPages) {
     }, this));
 
   this.actions = [];
-  requestPages['actions'].forEach(_.bind(function(action) {
+  this.actionsJson.forEach(_.bind(function(action) {
     this.actions.push( new RequestPages.Form.Action(action) );
 
   }, this));

@@ -5,7 +5,6 @@
            id="<%= question.questionId() %>"
            name="<%= question.questionId() %>"
            value="<%= question.value %>"
-           placeholder="<%= question.placeholder() %>"
            <%= question.isRequired() %>
     />
     <%= question.questionText() %>

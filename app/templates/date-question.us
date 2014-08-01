@@ -1,4 +1,4 @@
-<div class="question date <%= question.isRequired() %>">
+<div class="question date <%= question.isRequired() %> <%= question.questionId %>">
   <label for="<%= question.questionId() %>">
     <%= question.questionText() %>
   </label>

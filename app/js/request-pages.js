@@ -16,13 +16,25 @@ window.RequestPages = function(patientId, prescriptionId, paRequestId) {
   }, this);
 
   this._getSuccessCallback = _.bind(function(data) {
-    this.form = new RequestPages.Form(data['request_page']);
+    this.form = new RequestPages.Form(data['request_page']['forms'], data['request_page']['data'], data['request_page']['actions']);
     $(this.container).html(this.form.render());
+    $(this.container).find('form').on('submit', _.bind(function(e) {
+      this.postForm();
+      return false;
+    }, this));
 
   }, this);
 
   this.showForm = _.bind(function() {
     $.get(this._resourceUrl(), this._getSuccessCallback);
+
+  }, this);
+
+  this.postForm = _.bind(function() {
+    $.post(
+      this._resourceUrl(),
+      $(this.container).find('form').serialize(),
+      this._getSuccessCallback );
 
   }, this);
 
