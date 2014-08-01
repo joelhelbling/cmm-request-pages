@@ -5,10 +5,12 @@ describe 'RequestPages', ->
   Given -> @resourceUrl = "/patients/#{@patientId}/prescriptions/#{@prescriptionId}/pa_requests/#{@paRequestId}/request_pages.json"
   When  -> @subject = new RequestPages(@patientId, @prescriptionId, @paRequestId)
 
-  describe '#constructor', ->
+  describe '#showForm', ->
     Given -> spyOn($, 'get')
     Given -> @isResourceUrl        = (arg)=> arg == @resourceUrl
     Given -> @isGetSuccessCallback = (arg)=> arg == @subject._getSuccessCallback
+
+    When  -> @subject.showForm()
 
     Then  ->
       expect($.get).toHaveBeenCalledWith(jasmine.argThat(@isResourceUrl), jasmine.argThat(@isGetSuccessCallback))
